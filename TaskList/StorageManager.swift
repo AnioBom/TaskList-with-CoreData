@@ -51,10 +51,8 @@ class StorageManager {
     }
 
     func fetchData() {
-        let fetchRequest = NewTask.fetchRequest()
         
-        do {
-            
-        }
     }
+    
+    func 
 }

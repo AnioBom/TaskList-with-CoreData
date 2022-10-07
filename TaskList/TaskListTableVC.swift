@@ -11,7 +11,7 @@ class TaskListTableVC: UITableViewController {
     
     
     private let cellID = "Task"
-    private var taskList: [NewTask] = []
+    private var tasks: [NewTask] = []
 
 
     override func viewDidLoad() {
@@ -73,20 +73,41 @@ extension TaskListTableVC {
 
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        taskList.count
+        tasks.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
 
-        let task = taskList[indexPath.row]
+        let task = tasks[indexPath.row]
         var content = cell.defaultContentConfiguration()
         content.text = task.name
         cell.contentConfiguration = content
 
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
+    
+    /*
+     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+     let buttonDelete = UIContextualAction(style: .destructive, title: nil) { (_, _, complitionHand) in
+     self.tasks.remove(at: indexPath.row)
+     tableView.deleteRows(at: [indexPath], with: .fade)
+     }
+     
+     buttonDelete.image = UIImage(systemName: "Delete")
+     buttonDelete.backgroundColor = .systemRed
+     
+     return UISwipeActionsConfiguration(actions: [buttondelete])
+  }
+     */
+    
 }
 
 extension TaskListTableVC {
@@ -97,10 +118,18 @@ extension TaskListTableVC {
             guard let task = alert.textFields?.first?.text, !task.isEmpty else { return }
             self.save(task)
         }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive)
+        alert.addAction(saveAction)
+        alert.addAction(cancelAction)
+        alert.addTextField { textField in textField.placeholder = "New Task"
+        }
+        present(alert, animated: true)
     }
     
     private func save(_ taskName: String) {
         
         
     }
+    
+    
 }
