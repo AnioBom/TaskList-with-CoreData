@@ -6,12 +6,9 @@
 //
 
 import UIKit
-import CoreData
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    var storageManager = StorageManager()
 
     var window: UIWindow?
 
@@ -23,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        
     }
 
 }

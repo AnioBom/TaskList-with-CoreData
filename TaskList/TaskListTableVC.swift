@@ -6,11 +6,9 @@
 //
 
 import UIKit
-import CoreData
 
 class TaskListTableVC: UITableViewController {
     
-    private let context = StorageManager()
     
     private let cellID = "Task"
     private var taskList: [NewTask] = []
@@ -101,8 +99,8 @@ extension TaskListTableVC {
         }
     }
     
-    private func save() {
-        guard let entityDescription = NSEntityDescription.entity(forEntityName: "NewTask", in: context) else { return }
+    private func save(_ taskName: String) {
+        
         
     }
 }
