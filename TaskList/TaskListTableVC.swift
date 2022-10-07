@@ -24,7 +24,6 @@ class TaskListTableVC: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        context.saveContext()
         tableView.reloadData()
     }
 
