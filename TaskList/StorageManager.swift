@@ -18,8 +18,6 @@ class StorageManager {
         context = persistentContainer.viewContext
     }
     
-    private var taskList: [NewTask] = []
-    
     // MARK: - Core Data stack
 
     var persistentContainer: NSPersistentContainer = {
@@ -39,7 +37,6 @@ class StorageManager {
     // MARK: - Core Data Saving support
 
     func saveContext () {
-        let context = persistentContainer.viewContext
         if context.hasChanges {
             do {
                 try context.save()
@@ -50,9 +47,17 @@ class StorageManager {
         }
     }
 
-    func fetchData() {
+    func fetchData() -> NSFetchRequest<NewTask> {
         
+        let fetchRequest = NewTask.fetchRequest()
+        
+        do {
+            let tasks = try context.fetch(fetchRequest)
+        } catch {
+            print("Failed to fetch data", error)
+        }
+        return NSFetchRequest<NewTask>(entityName: "New Task")
     }
     
-    func 
+
 }

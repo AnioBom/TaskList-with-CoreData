@@ -10,6 +10,7 @@ import UIKit
 class TaskListTableVC: UITableViewController {
     
     
+    
     private let cellID = "Task"
     private var tasks: [NewTask] = []
 
@@ -59,7 +60,7 @@ class TaskListTableVC: UITableViewController {
     }
     
     @objc private func addNewTask() {
-        
+        showAlert(with: "New Task", and: "What do you want to do?")
     }
 
 }
@@ -126,9 +127,11 @@ extension TaskListTableVC {
     }
     
     private func save(_ taskName: String) {
-        
+        StorageManager.store.saveContext()
         
     }
     
-    
+    private func fetchData() {
+        StorageManager.store.fetchData()
+    }
 }
