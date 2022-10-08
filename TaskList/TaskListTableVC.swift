@@ -128,6 +128,7 @@ extension TaskListTableVC {
     
     private func save(_ taskName: String) {
         StorageManager.store.saveContext()
+        tableView.insertRows(at: IndexPath + 1, with: .automatic)
         
     }
     
